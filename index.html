@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+
+
+  <script>
+    // Initialize Firebase
+
+  </script>
+</head>
+
+<body>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-1">Title</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 w-50">
+          <img class="img-fluid d-block" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
+        <div class="col-md-6 w-50">
+          <form id="idformi" class="">
+            <div class="form-group"> <label>subir</label>
+             <input type="file" value="upload" id="fileButton" />
+               </div>
+         
+            <div class="form-group"> </div>
+            <button onclick="" class="btn btn-primary" id="idboton">Submit</button>
+          </form>
+        </div>   <progress value="0" max="100" id="uploader">0%</progress>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+
+    // Initialize Firebase
+       var config = {
+    apiKey: "AIzaSyDaqO5WPK_UXqyPm1B8wWA6ynoVzBkHjz0",
+    authDomain: "americaneoffers.firebaseapp.com",
+    databaseURL: "https://americaneoffers.firebaseio.com",
+    projectId: "americaneoffers",
+    storageBucket: "americaneoffers.appspot.com",
+    messagingSenderId: "1022148058082"
+  };
+  firebase.initializeApp(config);
+
+      // Obtener Elementos
+      var uploader = document.getElementById('uploader');
+      var fileButton = document.getElementById('fileButton');
+
+      // Vigilar selección archivo
+      fileButton.addEventListener('change', function(e) {
+        //Obtener archivo
+        var file = e.target.files[0];
+
+        // Crear un storage ref
+        var storageRef = firebase.storage().ref('mis_fotos/' + file.name);
+
+
+        // Subir archivo
+        var task = storageRef.put(file);
+
+        // Actualizar barra progreso
+        task.on('state_changed',
+
+          function progress(snapshot) {
+            var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            uploader.value = percentage;
+          },
+
+          function error(err) {
+
+          },
+
+
+          function complete() {
+
+
+          }
+
+
+
+
+
+          )
+
+
+
+alert(88888888);
+
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 10px;right:10px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:180px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo&nbsp;&nbsp;
+    <img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16">
+  </pingendo>
+</body>
+
+</html>
